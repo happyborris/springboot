@@ -12,7 +12,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class) // JUnit5한테 스프링으로 테스트하겠다는 것을 알림
-@WebMvcTest // web에 관련된 컨트롤러 가지고만 테스트를 짤 때 사용
+@WebMvcTest(controllers = HelloController.class) // web에 관련된 컨트롤러 가지고만 테스트를 짤 때 사용
+                                                    // HelloController만 읽어라~
 //@SpringBootTest -> 얘를 써도 되는데 그러면 필요없는 많은 다른 요소들까지 끌어오므로 불필요함.
 public class HelloControllerTest {
 

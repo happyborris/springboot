@@ -35,4 +35,12 @@ public class Posts {
         this.content = content;
         this.author = author;
     }
+
+    // 수정 기능
+    // title, content만 수정 가능(author는 수정 안됨)
+    // 수정일자도 새로 표시
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
