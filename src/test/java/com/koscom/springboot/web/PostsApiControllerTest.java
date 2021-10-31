@@ -2,6 +2,7 @@ package com.koscom.springboot.web;
 
 import com.koscom.springboot.domain.posts.Posts;
 import com.koscom.springboot.domain.posts.PostsRepository;
+import com.koscom.springboot.web.dto.posts.PostsResponseDto;
 import com.koscom.springboot.web.dto.posts.PostsSaveRequestDto;
 import com.koscom.springboot.web.dto.posts.PostsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
@@ -96,5 +97,33 @@ public class PostsApiControllerTest {
         List<Posts> result = postsRepository.findAll();
         assertThat(result.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(result.get(0).getContent()).isEqualTo(expectedContent);
+    }
+
+    @Test
+    void Post가_1건_조회_된다() {
+        // given
+        String title = "title";
+        String content = "content";
+        String author = "author";
+        Posts savePosts = postsRepository.save(Posts.builder()
+                .title(title)
+                .content(content)
+                .author(author)
+                .build());
+
+        Long id = savePosts.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/" + id ;
+
+        // when
+        ResponseEntity<PostsResponseDto> responseEntity = restTemplate.getForEntity(url, PostsResponseDto.class);
+
+        // then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK); // Http 응답 코드가 200
+        PostsResponseDto body = responseEntity.getBody();
+        assertThat(body.getId()).isEqualTo(id);
+        assertThat(body.getTitle()).isEqualTo(title);
+        assertThat(body.getContent()).isEqualTo(content);
+        assertThat(body.getAuthor()).isEqualTo(author);
     }
 }

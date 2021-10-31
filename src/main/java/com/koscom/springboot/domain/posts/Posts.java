@@ -1,5 +1,6 @@
 package com.koscom.springboot.domain.posts;
 
+import com.koscom.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor // 디폴트 생성자 만들어 줌, JPA는 거의 디폴트 생성자를 기반으로 값을 넣어주는 거라서 디폴트 생성자가 필수임.
                     //  원래도 디폴트 생성자는 있지만 얘 없이 다른 생성자 만들면 디폴트 생성자 사라짐!
 @Entity // JPA에서 지원하는 Entity 써야함! deprecated 된거 쓰면 안됨!
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY) // id 채번 방식, IDENTITY가 Auto Increment 방식임.
