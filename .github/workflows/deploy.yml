@@ -29,13 +29,13 @@ jobs:
         run: ./gradlew clean build # gradlew 로 빌드(test & jar 파일 생성) 수행
         shell: bash
 
-#      - name: Get current time
-#        uses: 1466587594/get-current-time@v2
-#        id: current-time
-#        with:
-#          format: YYYY-MM-DDTHH-mm-ss
-#          utcOffset: "+09:00"
-#
-#      - name: Show Current Time
-#        run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
-#        shell: bash
+      - name: Get current time
+        uses: 1466587594/get-current-time@v2 # 플러그인 사용해서 time action 추가하기, github market place 에서 조회 가능
+        id: current-time # current-time 으로 저장
+        with:
+          format: YYYY-MM-DDTHH-mm-ss
+          utcOffset: "+09:00"
+
+      - name: Show Current Time # 여기서 출력
+        run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
+        shell: bash
