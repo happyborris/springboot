@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     // 테스트 할 경우 security 무시
+    // properties의 security.enabled = false 일 경우에 무시
     @Override
     public void configure(WebSecurity web) throws Exception {
         if(!securityEnabled) {

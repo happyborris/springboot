@@ -16,6 +16,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT) // 실제로 임시 톰캣을 띄워서 테스트 수행함, PORT 번호는 충돌을 피하기 위해 랜덤값으로(Postman 날리듯이!)
+@TestPropertySource(properties = {"security.enabled=false"}) // 이 테스트에 한해서 properties 값을 변경함 = security.enabled=false 로!
 public class PostsApiControllerTest {
 
     @LocalServerPort
